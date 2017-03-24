@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+var _output io.Writer = os.Stdout
+
+type User struct {
+	Name string
+}
+
+func main() {
+	u := getUser()
+	display(u)
+}
+
+func getUser() *User {
+	return &User{Name: os.Getenv("USER")}
+}
+
+func display(u *User) {
+	fmt.Fprintln(_output, u.Name)
+}
